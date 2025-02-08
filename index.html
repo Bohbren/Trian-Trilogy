@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Trian Trilogy - Scott Bohlin</title>
+  <!-- Alpine.js is loaded in case you need future interactivity -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #2b2a28;
+      color: #d4c8b2;
+      font-family: 'Cinzel', serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Make the navbar float over content with partial transparency + blur */
+    header {
+      position: fixed;
+      top: 0; 
+      left: 0; 
+      right: 0;
+      z-index: 50;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      background-color: rgba(58, 51, 41, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* Title styling */
+    header h1 {
+      font-size: 1.75rem;
+      color: #f0ead6;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
+    }
+
+    /* Nav links */
+    nav a {
+      color: #f0ead6;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 0 15px;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      border-bottom: 2px solid #f7cf6c;
+      color: #f7cf6c; 
+    }
+
+    /* Add top padding so page content doesn't hide behind fixed navbar */
+    .content-offset {
+      padding-top: 4rem;
+    }
+
+    /* Parallax Background */
+    .parallax {
+      background-image: url('Images/headerImage.jpg');
+      height: 400px;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Button styling */
+    .btn {
+      background-color: #3a3329;
+      color: #e6dfd4;
+      padding: 12px 24px;
+      border: 2px solid #9e8965;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: 0.3s;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #5a4c3d;
+      border-color: #c5a46d;
+    }
+
+    /* Content Section (e.g., the saga intro) */
+    .content-section {
+      background-color: #e6dfd4;
+      color: #3a3329;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    /* Book Showcase Wheel Styles */
+    .wheel-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      max-width: 900px;
+      margin: auto;
+      gap: 20px;
+    }
+    .wheel {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+    }
+    .wheel-item {
+      position: absolute;
+      transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 2px solid #9e8965;
+      border-radius: 8px;
+    }
+    .wheel-item.active {
+      transform: translateX(-50%) scale(1.3);
+      filter: blur(0);
+      z-index: 10;
+      opacity: 1;
+    }
+    .wheel-item.inactive {
+      filter: blur(2px);
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    /* Positioning the items */
+    #wheel-center {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(1.3);
+      width: 180px;
+      height: 250px;
+    }
+    #wheel-left {
+      left: 15%;
+      top: 50%;
+      transform: translateY(-50%) scale(0.8);
+      width: 150px;
+      height: 210px;
+    }
+    #wheel-right {
+      right: 15%;
+      top: 50%;
+      transform: translateY(-50%) scale(0.8);
+      width: 150px;
+      height: 210px;
+    }
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      #wheel-center {
+        width: 140px;
+        height: 200px;
+      }
+      #wheel-left,
+      #wheel-right {
+        width: 120px;
+        height: 170px;
+      }
+      #wheel-left {
+        left: 5%;
+      }
+      #wheel-right {
+        right: 5%;
+      }
+    }
+
+    /* "Coming Soon" Overlay at top */
+    .coming-soon-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(58,51,41, 0.8);
+      color: #e6dfd4;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 10px 0;
+      border-bottom: 2px solid #9e8965;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Title and Navigation -->
+  <header>
+    <h1>The Trian Trilogy</h1>
+    <nav>
+      <!-- Updated links to point to your new pages -->
+      <a href="index.html">Home</a>
+      <a href="books.html">Books</a>
+      <a href="about.html">About</a>
+      <a href="merch.html">Merch</a>
+      <!-- Still linking to newsletter signup on this same page -->
+      <a href="#contact">Newsletter</a>
+    </nav>
+  </header>
+
+  <div class="content-offset">
+    <!-- Parallax Background Section -->
+    <div class="parallax"></div>
+
+    <!-- Dark Fantasy Saga Introduction -->
+    <section class="content-section">
+      <h2 class="text-5xl font-bold">A Dark Fantasy Saga of Myth & War</h2>
+      <p class="mt-4 max-w-2xl mx-auto text-lg">
+        A gripping dark fantasy series blending mythology, celestial and infernal conflicts, 
+        and unforgettable creatures.
+      </p>
+    </section>
+
+    <!-- Book Showcase Section -->
+    <section id="books" class="py-20 container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">Books</h2>
+      <div class="wheel-container">
+        <button class="btn" onclick="prevBook()">&#9665;</button>
+        <div class="wheel">
+          <div id="wheel-left" class="wheel-item inactive"></div>
+          <div id="wheel-center" class="wheel-item active"></div>
+          <div id="wheel-right" class="wheel-item inactive"></div>
+        </div>
+        <button class="btn" onclick="nextBook()">&#9655;</button>
+      </div>
+    </section>
+
+    <!-- Newsletter Signup Section -->
+    <section id="contact" class="py-20 text-center">
+      <h2 class="text-3xl font-bold mb-6">Stay Updated</h2>
+      <p class="max-w-2xl mx-auto">
+        Sign up for the newsletter to receive updates on new books, exclusive content, and behind-the-scenes insights.
+      </p>
+      <form class="mt-4">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="p-3 border rounded-md w-64"
+          required
+        />
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white text-center py-6">
+      <p>&copy; 2024 Scott Bohlin. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <!-- JavaScript for Book Rotation -->
+  <script>
+    const books = [
+      'Images/book1.jpg',
+      'Images/book2.jpg',
+      'Images/book3.jpg'
+    ];
+
+    let currentIndex = 0;
+    let autoRotateTimer;
+
+    function updateBooks() {
+      const leftIndex = (currentIndex + books.length - 1) % books.length;
+      const rightIndex = (currentIndex + 1) % books.length;
+
+      const centerDiv = document.getElementById("wheel-center");
+      const leftDiv = document.getElementById("wheel-left");
+      const rightDiv = document.getElementById("wheel-right");
+
+      centerDiv.style.backgroundImage = `url('${books[currentIndex]}')`;
+      leftDiv.style.backgroundImage   = `url('${books[leftIndex]}')`;
+      rightDiv.style.backgroundImage  = `url('${books[rightIndex]}')`;
+
+      centerDiv.className = "wheel-item active";
+      leftDiv.className = "wheel-item inactive";
+      rightDiv.className = "wheel-item inactive";
+
+      centerDiv.innerHTML = "";
+      leftDiv.innerHTML   = "";
+      rightDiv.innerHTML  = "";
+
+      if (books[currentIndex].includes('book3.jpg')) {
+        centerDiv.innerHTML = '<div class="coming-soon-overlay">Coming Soon</div>';
+      }
+      if (books[leftIndex].includes('book3.jpg')) {
+        leftDiv.innerHTML = '<div class="coming-soon-overlay">Coming Soon</div>';
+      }
+      if (books[rightIndex].includes('book3.jpg')) {
+        rightDiv.innerHTML = '<div class="coming-soon-overlay">Coming Soon</div>';
+      }
+    }
+
+    function nextBook() {
+      currentIndex = (currentIndex + 1) % books.length;
+      updateBooks();
+      resetAutoRotate();
+    }
+
+    function prevBook() {
+      currentIndex = (currentIndex + books.length - 1) % books.length;
+      updateBooks();
+      resetAutoRotate();
+    }
+
+    function resetAutoRotate() {
+      clearInterval(autoRotateTimer);
+      autoRotateTimer = setInterval(nextBook, 3000);
+    }
+
+    updateBooks();
+    resetAutoRotate();
+  </script>
+</body>
+</html>

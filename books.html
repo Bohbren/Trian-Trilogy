@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Books - The Trian Trilogy</title>
+  <!-- Tailwind & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #2b2a28;
+      color: #d4c8b2;
+      font-family: 'Cinzel', serif;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-bg {
+      background-color: rgba(58, 51, 41, 0.75);
+      backdrop-filter: blur(4px);
+    }
+    nav a {
+      color: #f0ead6;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s, border-bottom-color 0.3s;
+    }
+    nav a:hover {
+      color: #f7cf6c;
+      border-bottom-color: #f7cf6c;
+    }
+    .content-section {
+      background-color: #e6dfd4;
+      color: #3a3329;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .btn-purchase {
+      background-color: #3a3329;
+      color: #e6dfd4;
+      padding: 8px 16px;
+      border: 2px solid #9e8965;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 8px;
+    }
+    .btn-purchase:hover {
+      background-color: #5a4c3d;
+      border-color: #c5a46d;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Fixed translucent header -->
+<header 
+  class="fixed w-full h-16 flex items-center justify-between px-6 nav-bg"
+  style="top:0; left:0; right:0; z-index:50;"
+>
+  <h1 class="text-2xl md:text-3xl font-bold uppercase tracking-widest text-white">
+    The Trian Trilogy
+  </h1>
+  <nav>
+    <ul class="flex space-x-4 md:space-x-6">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="books.html" class="border-bottom: 2px solid #f7cf6c;">Books</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="merch.html">Merch</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Spacer to avoid overlap -->
+<div class="pt-16"></div>
+
+<!-- Books List Section -->
+<section class="content-section min-h-screen">
+  <h2 class="text-4xl font-bold mb-6">The Trian Trilogy</h2>
+
+  <!-- Grid of books -->
+  <div class="books-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+    <!-- Example Book 1 -->
+    <div class="bg-white rounded-lg overflow-hidden text-gray-800 shadow-md p-4">
+      <img src="Images/book1.jpg" alt="Book 1 Cover" class="w-full h-64 object-cover mb-4"/>
+      <h3 class="text-2xl font-semibold mb-2">The Wings That Rise and Fall</h3>
+      <p class="mb-4">A fierce battle between beasts of legend. The first entry in the Trian Trilogy.</p>
+      <a href="#" class="btn-purchase">Buy on Amazon</a>
+      <a href="#" class="btn-purchase">Barnes &amp; Noble</a>
+    </div>
+
+    <!-- Example Book 2 -->
+    <div class="bg-white rounded-lg overflow-hidden text-gray-800 shadow-md p-4">
+      <img src="Images/book2.jpg" alt="Book 2 Cover" class="w-full h-64 object-cover mb-4"/>
+      <h3 class="text-2xl font-semibold mb-2">The Boatman's Promise</h3>
+      <p class="mb-4">A descent into the underworld. The second entry in the Trian Trilogy.</p>
+      <a href="#" class="btn-purchase">Buy on Amazon</a>
+      <a href="#" class="btn-purchase">Local Indie Store</a>
+    </div>
+
+    <!-- Example Book 3 -->
+    <div class="bg-white rounded-lg overflow-hidden text-gray-800 shadow-md p-4">
+      <img src="Images/book3.jpg" alt="Book 3 Cover" class="w-full h-64 object-cover mb-4"/>
+      <h3 class="text-2xl font-semibold mb-2">The Coming Storm</h3>
+      <p class="mb-4">The final reckoning between worlds. Coming soon!</p>
+      <!-- Once available:
+      <a href="#" class="btn-purchase">Buy on Amazon</a>
+      <a href="#" class="btn-purchase">Local Indie Store</a> -->
+      <span class="text-red-600 font-bold text-lg">Coming Soon</span>
+    </div>
+
+    <!-- Add more book items as needed -->
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-white text-center py-4">
+  <p>&copy; 2025 Scott Bohlin. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
